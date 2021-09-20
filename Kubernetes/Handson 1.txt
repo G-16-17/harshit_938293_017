@@ -1,0 +1,151 @@
+Microsoft Windows [Version 10.0.19043.1165]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dell>Kubectl version
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.0", GitCommit:"c2b5237ccd9c0f1d600d3072634ca66cefdf272f", GitTreeState:"clean", BuildDate:"2021-08-04T18:03:20Z", GoVersion:"go1.16.6", Compiler:"gc", Platform:"windows/amd64"}
+Unable to connect to the server: dial tcp [::1]:8080: connectex: No connection could be made because the target machine actively refused it.
+
+C:\Users\dell>Minikube version
+minikube version: v1.23.0
+commit: 5931455374810b1bbeb222a9713ae2c756daee10
+
+C:\Users\dell>minikube start --driver=docker
+* minikube v1.23.0 on Microsoft Windows 10 Pro 10.0.19043 Build 19043
+! Deleting existing cluster minikube with different driver virtualbox due to --delete-on-failure flag set by the user.
+
+! Exiting due to GUEST_DRIVER_MISMATCH: The existing "minikube" cluster was created using the "virtualbox" driver, which is incompatible with requested "docker" driver.
+* Suggestion: Delete the existing 'minikube' cluster using: 'minikube delete', or start the existing 'minikube' cluster using: 'minikube start --driver=virtualbox'
+
+
+C:\Users\dell>Minikube status
+E0913 17:45:34.245632    7592 status.go:258] status error: host: load: filestore "minikube": open C:\Users\dell\.minikube\machines\minikube\config.json: The system cannot find the file specified.
+E0913 17:45:34.245632    7592 status.go:261] The "minikube" host does not exist!
+minikube
+type: Control Plane
+host: Nonexistent
+kubelet: Nonexistent
+apiserver: Nonexistent
+kubeconfig: Nonexistent
+
+
+C:\Users\dell>minikube docker-env
+
+X Exiting due to GUEST_NOT_FOUND: load: filestore "minikube": open C:\Users\dell\.minikube\machines\minikube\config.json: The system cannot find the file specified.
+* Suggestion: minikube is missing files relating to your guest environment. This can be fixed by running 'minikube delete'
+* Related issue: https://github.com/kubernetes/minikube/issues/9130
+
+
+C:\Users\dell>minikube
+minikube provisions and manages local Kubernetes clusters optimized for development workflows.
+
+Basic Commands:
+  start          Starts a local Kubernetes cluster
+  status         Gets the status of a local Kubernetes cluster
+  stop           Stops a running local Kubernetes cluster
+  delete         Deletes a local Kubernetes cluster
+  dashboard      Access the Kubernetes dashboard running within the minikube cluster
+  pause          pause Kubernetes
+  unpause        unpause Kubernetes
+
+Images Commands:
+  docker-env     Configure environment to use minikube's Docker daemon
+  podman-env     Configure environment to use minikube's Podman service
+  cache          Add, delete, or push a local image into minikube
+  image          Manage images
+
+Configuration and Management Commands:
+  addons         Enable or disable a minikube addon
+  config         Modify persistent configuration values
+  profile        Get or list the current profiles (clusters)
+  update-context Update kubeconfig in case of an IP or port change
+
+Networking and Connectivity Commands:
+  service        Returns a URL to connect to a service
+  tunnel         Connect to LoadBalancer services
+
+Advanced Commands:
+  mount          Mounts the specified directory into minikube
+  ssh            Log into the minikube environment (for debugging)
+  kubectl        Run a kubectl binary matching the cluster version
+  node           Add, remove, or list additional nodes
+  cp             Copy the specified file into minikube
+
+Troubleshooting Commands:
+  ssh-key        Retrieve the ssh identity key path of the specified node
+  ssh-host       Retrieve the ssh host key of the specified node
+  ip             Retrieves the IP address of the specified node
+  logs           Returns logs to debug a local Kubernetes cluster
+  update-check   Print current and latest version number
+  version        Print the version of minikube
+
+Other Commands:
+  completion     Generate command completion for a shell
+
+Use "minikube <command> --help" for more information about a given command.
+
+C:\Users\dell>minikube start
+* minikube v1.23.0 on Microsoft Windows 10 Pro 10.0.19043 Build 19043
+* Using the virtualbox driver based on existing profile
+* Starting control plane node minikube in cluster minikube
+! StartHost failed, but will try again: Error loading existing host. Please try running [minikube delete], then run [minikube start] again.: filestore "minikube": open C:\Users\dell\.minikube\machines\minikube\config.json: The system cannot find the file specified.
+* Failed to start virtualbox VM. Running "minikube delete" may fix it: Error loading existing host. Please try running [minikube delete], then run [minikube start] again.: filestore "minikube": open C:\Users\dell\.minikube\machines\minikube\config.json: The system cannot find the file specified.
+
+X Exiting due to GUEST_NOT_FOUND: Failed to start host: Error loading existing host. Please try running [minikube delete], then run [minikube start] again.: filestore "minikube": open C:\Users\dell\.minikube\machines\minikube\config.json: The system cannot find the file specified.
+* Suggestion: minikube is missing files relating to your guest environment. This can be fixed by running 'minikube delete'
+* Related issue: https://github.com/kubernetes/minikube/issues/9130
+
+
+C:\Users\dell>minikube delete
+* Removing C:\Users\dell\.minikube\machines\minikube ...
+* Removed all traces of the "minikube" cluster.
+
+C:\Users\dell>minikube start --driver=docker
+* minikube v1.23.0 on Microsoft Windows 10 Pro 10.0.19043 Build 19043
+* Using the docker driver based on user configuration
+* Starting control plane node minikube in cluster minikube
+* Pulling base image ...
+    > gcr.io/k8s-minikube/kicbase: 355.82 MiB / 355.82 MiB  100.00% 9.74 MiB p/
+* Creating docker container (CPUs=2, Memory=2200MB) ...
+* Preparing Kubernetes v1.22.1 on Docker 20.10.8 ...
+  - Generating certificates and keys ...
+  - Booting up control plane ...
+  - Configuring RBAC rules ...
+* Verifying Kubernetes components...
+! Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 6.7820924s
+* Restarting the docker service may improve performance.
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\dell>minikube status
+! Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 12.8339709s
+* Restarting the docker service may improve performance.
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+
+C:\Users\dell>minikube stop
+* Stopping node "minikube"  ...
+! Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 6.1061727s
+* Restarting the docker service may improve performance.
+* Powering off "minikube" via SSH ...
+* 1 nodes stopped.
+
+C:\Users\dell>minikube status
+! Executing "docker container inspect minikube --format={{.State.Status}}" took an unusually long time: 19.1504603s
+* Restarting the docker service may improve performance.
+E0913 18:00:47.708217    3452 status.go:258] status error: host: state: unknown state "minikube": context deadline exceeded
+E0913 18:00:47.709211    3452 status.go:261] The "minikube" host does not exist!
+minikube
+type: Control Plane
+host: Nonexistent
+kubelet: Nonexistent
+apiserver: Nonexistent
+kubeconfig: Nonexistent
+
+
+C:\Users\dell>
